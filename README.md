@@ -8,9 +8,54 @@
 Relearn/reframe MVC architecture and routing in a way that I can more easily understand.
 
 ### Processes:
-##### Step 1: Write a TestMethod Index_ReturnsCorrectView_True():
-##### Step 2: Write a Route (HttpGet) for Index():
-To fail "return new EmptyResult()"; To pass: return View();
+INDEX ('home') :: Views/Home || Controllers/HomeControllers
+```
+[HttpGet("/")]
+public ActionResult Index() { return View(); }
+```
+
+```
+[TestMethod]
+Index_ReturnsCorrectView_True()
+```
+
+NEW :: Views/Writer || Controllers/WriterControllers
+```
+[HttpGet("/classname/new")]
+public ActionResult New() { return View(); }
+```
+```
+[TestMethod]
+New_ReturnsCorrectView_True()
+```
+
+CREATE :: Views/Writer || Controllers/WriterControllers
+```
+[HttpPost("/classname")]
+public ActionResult New() { . . . return RedirectToAction("ActionName"); }
+```
+```
+[TestMethod]
+New_ReturnsCorrectActionResult_True()
+```
+```
+TestMethod
+New_RedirectsToCorrectActionName_True()
+```
+```
+TestMethod
+New_HasCorrectModelDatatype_True()
+```
+
+SHOW :: Views/Writer || Controllers/WriterControllers
+```
+[HttpGet("/classname/show")]
+public ActionResult Index() { return View(); }
+```
+```
+TestMethod
+Index_ReturnsCorrectView_True()
+```
 
 ## Setup/Installation Requirements
 Clone the code from [GitHub](https://github.com/skillitzimberg/Letters.Solution).
